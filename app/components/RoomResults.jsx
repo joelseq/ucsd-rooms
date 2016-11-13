@@ -32,7 +32,7 @@ function formatTime(time) {
     hours = formatNumber(hours);
     minutes = formatNumber(minutes);
 
-    return `${hours}:${minutes}:pm`;
+    return `${hours}:${minutes} pm`;
   }
   else {
     let hours = Math.floor(timeInt / 60);
@@ -43,7 +43,7 @@ function formatTime(time) {
     hours = formatNumber(hours);
     minutes = formatNumber(minutes);
 
-    return `${hours}:${minutes}:am`;
+    return `${hours}:${minutes} am`;
   }
 }
 
