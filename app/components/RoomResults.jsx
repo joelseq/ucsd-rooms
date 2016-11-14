@@ -1,6 +1,12 @@
 import React from 'react';
 
-function RoomResults({ openings }) {
+function RoomResults({ openings, loading }) {
+  if (loading) {
+    return (
+      <h3 className="loading-text">Loading...</h3>
+    );
+  }
+
   if (openings.length) {
     return (
       <div>
@@ -15,6 +21,7 @@ function RoomResults({ openings }) {
       </div>
     );
   }
+
   return null;
 }
 
