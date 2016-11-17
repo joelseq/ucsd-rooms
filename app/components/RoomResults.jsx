@@ -1,61 +1,51 @@
 import React from 'react';
 
+import LocationResults from './LocationResults';
+
 function RoomResults({ openings, loading }) {
   if (loading) {
     return (
-      <h3 className="loading-text">Loading...</h3>
+      <div className="ResultsWrapper">
+        <h3 className="loading-text">
+          <img 
+            src="/public/img/loading.svg" 
+            width="50"
+            height="50"
+          />
+        </h3>
+      </div>
     );
   }
 
   if (openings.length) {
+    // Build openings map
+    let openings_map = {};
+
+    openings.forEach(function(opening) {
+      let roomname = opening.room.name.split(' ')[0];
+      if (roomname in openings_map) {
+        openings_map[roomname].push(opening);
+      } else {
+        openings_map[roomname] = [opening];
+      }
+    });
+
+    let openings_list = Object.keys(openings_map).map(key => openings_map[key]);
+
+    let res = [];
+
+    openings_list.map(location_list => {
+      res.push(<LocationResults locations={location_list} />);
+    });
+
     return (
-      <div>
-        {
-          openings.map(opening =>
-            <div key={opening._id} className="RoomResult">
-              <h3>{opening.room.name}</h3>
-              <p>Free from {formatTime(opening.start)} to {formatTime(opening.end)}</p>
-            </div>
-          )
-        }
-      </div>
+      <div className="ResultsWrapper">{res}</div>
     );
+
   }
 
   return null;
 }
 
-function formatTime(time) {
-  let timeInt = parseInt(time);
-
-  if (timeInt >= 720) {
-    timeInt = timeInt - 720;
-
-    let hours = Math.floor(timeInt / 60);
-    let minutes = timeInt % 60;
-
-    hours = hours === 0 ? 12 : hours;
-
-    hours = formatNumber(hours);
-    minutes = formatNumber(minutes);
-
-    return `${hours}:${minutes} pm`;
-  }
-  else {
-    let hours = Math.floor(timeInt / 60);
-    let minutes = timeInt % 60;
-
-    hours = hours === 0 ? 12 : hours;
-
-    hours = formatNumber(hours);
-    minutes = formatNumber(minutes);
-
-    return `${hours}:${minutes} am`;
-  }
-}
-
-function formatNumber(number) {
-  return number > 9 ? "" + number: "0" + number;
-}
 
 export default RoomResults;
