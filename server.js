@@ -29,6 +29,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
+// Somehow it needs this line also to serve static files (ie jpg)
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(limiter);
 
 mongoose.connect(process.env.DB_URI);
