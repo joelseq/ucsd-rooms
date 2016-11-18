@@ -112,11 +112,11 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// Load foundation
-	__webpack_require__(264);
+	__webpack_require__(266);
 	$(document).foundation();
 
 	// App css
-	__webpack_require__(268);
+	__webpack_require__(270);
 
 		_reactDom2.default.render(_react2.default.createElement(_reactRouter.Router, { history: _reactRouter.browserHistory, routes: _routes2.default }), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
@@ -26231,7 +26231,7 @@
 
 	var _RoomResults2 = _interopRequireDefault(_RoomResults);
 
-	var _api = __webpack_require__(238);
+	var _api = __webpack_require__(240);
 
 	var _api2 = _interopRequireDefault(_api);
 
@@ -26265,9 +26265,9 @@
 	      var _this2 = this;
 
 	      $(".Home").animate({
-	        "padding-top": "6rem",
-	        "padding-bottom": "6rem"
-	      });
+	        "padding-top": "6vh",
+	        "padding-bottom": "6vh"
+	      }, "slow");
 	      this.setState({
 	        loading: true
 	      });
@@ -26291,22 +26291,26 @@
 	          'div',
 	          { className: 'Home' },
 	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            'Find empty classrooms at UCSD!'
-	          ),
-	          _react2.default.createElement(
-	            'h4',
-	            null,
-	            'Pick a Day and Time'
-	          ),
-	          _react2.default.createElement(
 	            'div',
-	            { className: 'row' },
+	            { className: 'Home--content' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              'Find empty classrooms at UCSD!'
+	            ),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'Pick a Day and Time'
+	            ),
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'medium-8 small-10 columns medium-offset-2 small-offset-1' },
-	              _react2.default.createElement(_RoomForm2.default, { handleFormSubmit: this.handleFormSubmit })
+	              { className: 'row' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'medium-8 small-10 columns medium-offset-2 small-offset-1' },
+	                _react2.default.createElement(_RoomForm2.default, { handleFormSubmit: this.handleFormSubmit })
+	              )
 	            )
 	          )
 	        ),
@@ -26608,7 +26612,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _LocationResults = __webpack_require__(271);
+	var _LocationResults = __webpack_require__(238);
 
 	var _LocationResults2 = _interopRequireDefault(_LocationResults);
 
@@ -26684,7 +26688,288 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var axios = __webpack_require__(239);
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactFontawesome = __webpack_require__(239);
+
+	var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Results for a specific area (ie CENTR)
+
+	var LocationResults = function (_React$Component) {
+	  _inherits(LocationResults, _React$Component);
+
+	  function LocationResults(props) {
+	    _classCallCheck(this, LocationResults);
+
+	    var _this = _possibleConstructorReturn(this, (LocationResults.__proto__ || Object.getPrototypeOf(LocationResults)).call(this, props));
+
+	    _this.state = {
+	      hidden: true
+	    };
+	    _this.handleShow = _this.handleShow.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(LocationResults, [{
+	    key: 'handleShow',
+	    value: function handleShow() {
+	      this.setState({
+	        hidden: !this.state.hidden
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var tmp = [];
+	      var hidden = this.state.hidden ? "hidden" : "";
+	      var fa_name = this.state.hidden ? "caret-down" : "times-circle-o";
+	      // Order by room
+	      this.props.locations.map(function (opening) {
+	        tmp.push(_react2.default.createElement(
+	          'div',
+	          { key: opening._id, className: 'RoomResult' },
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            opening.room.name
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Free from ',
+	            formatTime(opening.start),
+	            ' to ',
+	            formatTime(opening.end)
+	          )
+	        ));
+	      });
+	      return _react2.default.createElement(
+	        'div',
+	        { key: this.props.locations[0]._id,
+	          className: 'Results',
+	          onClick: function onClick() {
+	            return _this2.handleShow();
+	          }
+	        },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'RoomResult RoomName' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            this.props.locations[0].room.name.split(' ')[0]
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            this.props.locations.length,
+	            ' rooms available'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'Center' },
+	            _react2.default.createElement(_reactFontawesome2.default, { name: fa_name })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: hidden },
+	          tmp
+	        )
+	      );
+	    }
+	  }]);
+
+	  return LocationResults;
+	}(_react2.default.Component);
+
+	exports.default = LocationResults;
+
+
+	function formatTime(time) {
+	  var timeInt = parseInt(time);
+
+	  if (timeInt >= 720) {
+	    timeInt = timeInt - 720;
+
+	    var hours = Math.floor(timeInt / 60);
+	    var minutes = timeInt % 60;
+
+	    hours = hours === 0 ? 12 : hours;
+
+	    hours = formatNumber(hours);
+	    minutes = formatNumber(minutes);
+
+	    return hours + ':' + minutes + ' pm';
+	  } else {
+	    var _hours = Math.floor(timeInt / 60);
+	    var _minutes = timeInt % 60;
+
+	    _hours = _hours === 0 ? 12 : _hours;
+
+	    _hours = formatNumber(_hours);
+	    _minutes = formatNumber(_minutes);
+
+	    return _hours + ':' + _minutes + ' am';
+	  }
+	}
+
+	function formatNumber(number) {
+	  return number > 9 ? "" + number : "0" + number;
+	}
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.srOnlyStyle = undefined;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var srOnlyStyle = exports.srOnlyStyle = {
+	  position: 'absolute',
+	  width: '1px',
+	  height: '1px',
+	  padding: '0px',
+	  margin: '-1px',
+	  overflow: 'hidden',
+	  clip: 'rect(0px, 0px, 0px, 0px)',
+	  border: '0px'
+	};
+
+	/**
+	 * A React component for the font-awesome icon library.
+	 *
+	 *
+	 * @param {String} [ariaLabel] An extra accessibility label to put on the icon
+	 * @param {Boolean} [border=false] Whether or not to show a border radius
+	 * @param {String} [className] An extra set of CSS classes to add to the component
+	 * @param {Object} [cssModule] Option to pass FontAwesome CSS as a module
+	 * @param {Boolean} [fixedWidth=false] Make buttons fixed width
+	 * @param {String} [flip=false] Flip the icon's orientation.
+	 * @param {Boolean} [inverse=false]Inverse the icon's color
+	 * @param {String} name Name of the icon to use
+	 * @param {Boolean} [pulse=false] Rotate icon with 8 steps (rather than smoothly)
+	 * @param {Number} [rotate] The degress to rotate the icon by
+	 * @param {String} [size] The icon scaling size
+	 * @param {Boolean} [spin=false] Spin the icon
+	 * @param {String} [stack] Stack an icon on top of another
+	 * @param {String} [tag=span] The HTML tag to use as a string (eg 'i' or 'em')
+	 * @module FontAwesome
+	 * @type {ReactClass}
+	 */
+	exports.default = _react2.default.createClass({
+
+	  displayName: 'FontAwesome',
+
+	  propTypes: {
+	    ariaLabel: _react2.default.PropTypes.string,
+	    border: _react2.default.PropTypes.bool,
+	    className: _react2.default.PropTypes.string,
+	    cssModule: _react2.default.PropTypes.object,
+	    fixedWidth: _react2.default.PropTypes.bool,
+	    flip: _react2.default.PropTypes.oneOf(['horizontal', 'vertical']),
+	    inverse: _react2.default.PropTypes.bool,
+	    name: _react2.default.PropTypes.string.isRequired,
+	    pulse: _react2.default.PropTypes.bool,
+	    rotate: _react2.default.PropTypes.oneOf([90, 180, 270]),
+	    size: _react2.default.PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x']),
+	    spin: _react2.default.PropTypes.bool,
+	    stack: _react2.default.PropTypes.oneOf(['1x', '2x']),
+	    tag: _react2.default.PropTypes.string
+	  },
+
+	  render: function render() {
+	    var _props = this.props;
+	    var border = _props.border;
+	    var cssModule = _props.cssModule;
+	    var className = _props.className;
+	    var fixedWidth = _props.fixedWidth;
+	    var flip = _props.flip;
+	    var inverse = _props.inverse;
+	    var name = _props.name;
+	    var pulse = _props.pulse;
+	    var rotate = _props.rotate;
+	    var size = _props.size;
+	    var spin = _props.spin;
+	    var stack = _props.stack;
+	    var _props$tag = _props.tag;
+	    var tag = _props$tag === undefined ? 'span' : _props$tag;
+	    var ariaLabel = _props.ariaLabel;
+
+	    var props = _objectWithoutProperties(_props, ['border', 'cssModule', 'className', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack', 'tag', 'ariaLabel']);
+
+	    var classNames = [];
+
+	    if (cssModule) {
+	      classNames.push(cssModule['fa']);
+	      classNames.push(cssModule['fa-' + name]);
+	      size && classNames.push(cssModule['fa-' + size]);
+	      spin && classNames.push(cssModule['fa-spin']);
+	      pulse && classNames.push(cssModule['fa-pulse']);
+	      border && classNames.push(cssModule['fa-border']);
+	      fixedWidth && classNames.push(cssModule['fa-fw']);
+	      inverse && classNames.push(cssModule['fa-inverse']);
+	      flip && classNames.push(cssModule['fa-flip-' + flip]);
+	      rotate && classNames.push(cssModule['fa-rotate-' + rotate]);
+	      stack && classNames.push(cssModule['fa-stack-' + stack]);
+	    } else {
+	      classNames.push('fa');
+	      classNames.push('fa-' + name);
+	      size && classNames.push('fa-' + size);
+	      spin && classNames.push('fa-spin');
+	      pulse && classNames.push('fa-pulse');
+	      border && classNames.push('fa-border');
+	      fixedWidth && classNames.push('fa-fw');
+	      inverse && classNames.push('fa-inverse');
+	      flip && classNames.push('fa-flip-' + flip);
+	      rotate && classNames.push('fa-rotate-' + rotate);
+	      stack && classNames.push('fa-stack-' + stack);
+	    }
+
+	    // Add any custom class names at the end.
+	    className && classNames.push(className);
+	    return _react2.default.createElement(tag, _extends({}, props, { 'aria-hidden': true, className: classNames.join(' ') }), ariaLabel ? _react2.default.createElement('span', { style: srOnlyStyle }, ariaLabel) : null);
+	  }
+	});
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var axios = __webpack_require__(241);
 
 	function getRooms(day, time) {
 	  var requestUrl = '/api/rooms?day=' + day + '&time=' + time;
@@ -26699,20 +26984,20 @@
 	exports.default = { getRooms: getRooms };
 
 /***/ },
-/* 239 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(240);
+	module.exports = __webpack_require__(242);
 
 /***/ },
-/* 240 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(241);
-	var bind = __webpack_require__(242);
-	var Axios = __webpack_require__(243);
+	var utils = __webpack_require__(243);
+	var bind = __webpack_require__(244);
+	var Axios = __webpack_require__(245);
 
 	/**
 	 * Create an instance of Axios
@@ -26745,15 +27030,15 @@
 	};
 
 	// Expose Cancel & CancelToken
-	axios.Cancel = __webpack_require__(261);
-	axios.CancelToken = __webpack_require__(262);
-	axios.isCancel = __webpack_require__(258);
+	axios.Cancel = __webpack_require__(263);
+	axios.CancelToken = __webpack_require__(264);
+	axios.isCancel = __webpack_require__(260);
 
 	// Expose all/spread
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(263);
+	axios.spread = __webpack_require__(265);
 
 	module.exports = axios;
 
@@ -26762,12 +27047,12 @@
 
 
 /***/ },
-/* 241 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var bind = __webpack_require__(242);
+	var bind = __webpack_require__(244);
 
 	/*global toString:true*/
 
@@ -27067,7 +27352,7 @@
 
 
 /***/ },
-/* 242 */
+/* 244 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27084,17 +27369,17 @@
 
 
 /***/ },
-/* 243 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var defaults = __webpack_require__(244);
-	var utils = __webpack_require__(241);
-	var InterceptorManager = __webpack_require__(255);
-	var dispatchRequest = __webpack_require__(256);
-	var isAbsoluteURL = __webpack_require__(259);
-	var combineURLs = __webpack_require__(260);
+	var defaults = __webpack_require__(246);
+	var utils = __webpack_require__(243);
+	var InterceptorManager = __webpack_require__(257);
+	var dispatchRequest = __webpack_require__(258);
+	var isAbsoluteURL = __webpack_require__(261);
+	var combineURLs = __webpack_require__(262);
 
 	/**
 	 * Create a new instance of Axios
@@ -27175,13 +27460,13 @@
 
 
 /***/ },
-/* 244 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var utils = __webpack_require__(241);
-	var normalizeHeaderName = __webpack_require__(245);
+	var utils = __webpack_require__(243);
+	var normalizeHeaderName = __webpack_require__(247);
 
 	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 	var DEFAULT_CONTENT_TYPE = {
@@ -27198,10 +27483,10 @@
 	  var adapter;
 	  if (typeof XMLHttpRequest !== 'undefined') {
 	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(246);
+	    adapter = __webpack_require__(248);
 	  } else if (typeof process !== 'undefined') {
 	    // For node use HTTP adapter
-	    adapter = __webpack_require__(246);
+	    adapter = __webpack_require__(248);
 	  }
 	  return adapter;
 	}
@@ -27268,12 +27553,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(118)))
 
 /***/ },
-/* 245 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(241);
+	var utils = __webpack_require__(243);
 
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -27286,18 +27571,18 @@
 
 
 /***/ },
-/* 246 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(241);
-	var settle = __webpack_require__(247);
-	var buildURL = __webpack_require__(250);
-	var parseHeaders = __webpack_require__(251);
-	var isURLSameOrigin = __webpack_require__(252);
-	var createError = __webpack_require__(248);
-	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(253);
+	var utils = __webpack_require__(243);
+	var settle = __webpack_require__(249);
+	var buildURL = __webpack_require__(252);
+	var parseHeaders = __webpack_require__(253);
+	var isURLSameOrigin = __webpack_require__(254);
+	var createError = __webpack_require__(250);
+	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(255);
 
 	module.exports = function xhrAdapter(config) {
 	  return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -27393,7 +27678,7 @@
 	    // This is only done if running in a standard browser environment.
 	    // Specifically not if we're in a web worker, or react-native.
 	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(254);
+	      var cookies = __webpack_require__(256);
 
 	      // Add xsrf header
 	      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -27469,12 +27754,12 @@
 
 
 /***/ },
-/* 247 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var createError = __webpack_require__(248);
+	var createError = __webpack_require__(250);
 
 	/**
 	 * Resolve or reject a Promise based on response status.
@@ -27500,12 +27785,12 @@
 
 
 /***/ },
-/* 248 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var enhanceError = __webpack_require__(249);
+	var enhanceError = __webpack_require__(251);
 
 	/**
 	 * Create an Error with the specified message, config, error code, and response.
@@ -27523,7 +27808,7 @@
 
 
 /***/ },
-/* 249 */
+/* 251 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27548,12 +27833,12 @@
 
 
 /***/ },
-/* 250 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(241);
+	var utils = __webpack_require__(243);
 
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -27622,12 +27907,12 @@
 
 
 /***/ },
-/* 251 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(241);
+	var utils = __webpack_require__(243);
 
 	/**
 	 * Parse headers into an object
@@ -27665,12 +27950,12 @@
 
 
 /***/ },
-/* 252 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(241);
+	var utils = __webpack_require__(243);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -27739,7 +28024,7 @@
 
 
 /***/ },
-/* 253 */
+/* 255 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27781,12 +28066,12 @@
 
 
 /***/ },
-/* 254 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(241);
+	var utils = __webpack_require__(243);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -27840,12 +28125,12 @@
 
 
 /***/ },
-/* 255 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(241);
+	var utils = __webpack_require__(243);
 
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -27898,15 +28183,15 @@
 
 
 /***/ },
-/* 256 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(241);
-	var transformData = __webpack_require__(257);
-	var isCancel = __webpack_require__(258);
-	var defaults = __webpack_require__(244);
+	var utils = __webpack_require__(243);
+	var transformData = __webpack_require__(259);
+	var isCancel = __webpack_require__(260);
+	var defaults = __webpack_require__(246);
 
 	/**
 	 * Throws a `Cancel` if cancellation has been requested.
@@ -27983,12 +28268,12 @@
 
 
 /***/ },
-/* 257 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(241);
+	var utils = __webpack_require__(243);
 
 	/**
 	 * Transform the data for a request or a response
@@ -28009,7 +28294,7 @@
 
 
 /***/ },
-/* 258 */
+/* 260 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28020,7 +28305,7 @@
 
 
 /***/ },
-/* 259 */
+/* 261 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28040,7 +28325,7 @@
 
 
 /***/ },
-/* 260 */
+/* 262 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28058,7 +28343,7 @@
 
 
 /***/ },
-/* 261 */
+/* 263 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28083,12 +28368,12 @@
 
 
 /***/ },
-/* 262 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Cancel = __webpack_require__(261);
+	var Cancel = __webpack_require__(263);
 
 	/**
 	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -28146,7 +28431,7 @@
 
 
 /***/ },
-/* 263 */
+/* 265 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28179,16 +28464,16 @@
 
 
 /***/ },
-/* 264 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(265);
+	var content = __webpack_require__(267);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(267)(content, {});
+	var update = __webpack_require__(269)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -28205,10 +28490,10 @@
 	}
 
 /***/ },
-/* 265 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(266)();
+	exports = module.exports = __webpack_require__(268)();
 	// imports
 
 
@@ -28219,7 +28504,7 @@
 
 
 /***/ },
-/* 266 */
+/* 268 */
 /***/ function(module, exports) {
 
 	/*
@@ -28275,7 +28560,7 @@
 
 
 /***/ },
-/* 267 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -28527,16 +28812,16 @@
 
 
 /***/ },
-/* 268 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(269);
+	var content = __webpack_require__(271);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(267)(content, {});
+	var update = __webpack_require__(269)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -28553,301 +28838,19 @@
 	}
 
 /***/ },
-/* 269 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(266)();
+	exports = module.exports = __webpack_require__(268)();
 	// imports
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);", ""]);
 
 	// module
-	exports.push([module.id, "html,\nbody {\n  width: 100%;\n  height: 100%;\n  font-family: 'Roboto', sans-serif;\n  background-color: #F0f0f0; }\n\n#app {\n  width: 100%;\n  height: 100%; }\n\n.App {\n  width: 100%;\n  height: 100%; }\n\n.Home {\n  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(\"/public/img/lecture.jpg\") no-repeat center center fixed;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  -o-background-size: cover;\n  background-size: cover;\n  width: 100vw;\n  padding-top: 12rem;\n  padding-bottom: 12rem;\n  overflow: auto; }\n  .Home > h2 {\n    color: #EEE;\n    font-family: 'Open Sans', sans-serif;\n    font-weight: 300;\n    font-size: 2.5rem;\n    text-align: center; }\n  .Home > h4 {\n    color: #EEE;\n    font-family: 'Open Sans', sans-serif;\n    font-weight: 300;\n    font-size: 2.0rem;\n    text-align: center; }\n\n.spinner-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n  .spinner-container > i {\n    margin-top: 1.5rem;\n    color: white; }\n\n.RoomForm__form {\n  width: 100%; }\n  .RoomForm__form label {\n    color: #B2B2B2; }\n    .RoomForm__form label > select {\n      background-color: rgba(255, 255, 255, 0.2);\n      border: none;\n      color: #FCFCFC;\n      border-radius: 4px; }\n\n.RoomForm__form-button {\n  width: 100%;\n  background: none;\n  border-radius: 4px;\n  border: 1px solid #EEE;\n  height: 50px;\n  color: #EEE; }\n\n.RoomResult {\n  color: #111;\n  font-family: 'Roboto', sans-serif; }\n  .RoomResult h3,\n  .RoomResult h4 {\n    font-family: 'Open Sans', sans-serif; }\n\n.ResultsWrapper {\n  position: relative;\n  top: -6rem; }\n  .ResultsWrapper .Results {\n    margin-top: 10px;\n    background: #FFF;\n    color: #111;\n    box-shadow: 0 4px 8px #ddd;\n    margin-top: 10px;\n    border-radius: 4px;\n    font-family: 'Roboto', sans-serif; }\n    .ResultsWrapper .Results:first-of-type {\n      margin-top: 7rem; }\n\n@media (max-width: 420px) {\n  .Home {\n    padding-top: 6.5rem; }\n    .Home > h2 {\n      font-size: 1.5rem; } }\n\n.hidden {\n  display: none; }\n\n.loading-text {\n  color: #EEE;\n  text-align: center;\n  margin-top: 1.5rem;\n  position: absolute;\n  left: 50%;\n  top: 0; }\n  .loading-text img {\n    transform: translateX(-50%); }\n\n.Center {\n  text-align: center;\n  font-size: 20px; }\n\n.RoomResult {\n  margin-top: 0;\n  padding: 15px;\n  border-bottom: 2px solid #666; }\n", ""]);
+	exports.push([module.id, "html,\nbody {\n  width: 100%;\n  height: 100%;\n  font-family: 'Roboto', sans-serif;\n  background-color: #F0f0f0; }\n\n#app {\n  width: 100%;\n  height: 100%; }\n\n.App {\n  width: 100%;\n  height: 100%; }\n\n.Home {\n  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(\"/public/img/lecture.jpg\") no-repeat center center fixed;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  -o-background-size: cover;\n  background-size: cover;\n  width: 100vw;\n  padding-top: 25vh;\n  padding-bottom: 25vh;\n  overflow: auto; }\n  .Home h2,\n  .Home h4 {\n    color: #EEE;\n    font-family: 'Open Sans', sans-serif;\n    font-weight: 300;\n    font-size: 2.5rem;\n    text-align: center; }\n  .Home h4 {\n    font-size: 2.0rem; }\n  .Home--content {\n    min-height: 50vh; }\n  @media screen and (max-width: 650px) {\n    .Home {\n      padding-top: 18vh;\n      padding-bottom: 18vh; }\n      .Home--content {\n        min-height: 64vh; } }\n\n.spinner-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n  .spinner-container > i {\n    margin-top: 1.5rem;\n    color: white; }\n\n.RoomForm__form {\n  width: 100%; }\n  .RoomForm__form label {\n    color: #B2B2B2; }\n    .RoomForm__form label > select {\n      background-color: rgba(255, 255, 255, 0.2);\n      border: none;\n      color: #FCFCFC;\n      border-radius: 4px; }\n\n.RoomForm__form-button {\n  width: 100%;\n  background: none;\n  border-radius: 4px;\n  border: 1px solid #EEE;\n  height: 50px;\n  color: #EEE; }\n\n.RoomResult {\n  color: #111;\n  font-family: 'Roboto', sans-serif; }\n  .RoomResult h3,\n  .RoomResult h4 {\n    font-family: 'Open Sans', sans-serif; }\n\n.ResultsWrapper {\n  position: relative;\n  top: -6rem; }\n  .ResultsWrapper .Results {\n    margin-top: 10px;\n    background: #FFF;\n    color: #111;\n    box-shadow: 0 4px 8px #ddd;\n    margin-top: 10px;\n    border-radius: 4px;\n    font-family: 'Roboto', sans-serif; }\n    .ResultsWrapper .Results:first-of-type {\n      margin-top: 7rem; }\n\n@media (max-width: 420px) {\n  .Home > h2 {\n    font-size: 1.5rem; } }\n\n.hidden {\n  display: none; }\n\n.loading-text {\n  color: #EEE;\n  text-align: center;\n  margin-top: 1.5rem;\n  position: absolute;\n  left: 50%;\n  top: 0; }\n  .loading-text img {\n    transform: translateX(-50%); }\n\n.Center {\n  text-align: center;\n  font-size: 20px; }\n\n.RoomResult {\n  margin-top: 0;\n  padding: 15px;\n  border-bottom: 2px solid #666; }\n", ""]);
 
 	// exports
 
-
-/***/ },
-/* 270 */,
-/* 271 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(8);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactFontawesome = __webpack_require__(272);
-
-	var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Results for a specific area (ie CENTR)
-
-	var LocationResults = function (_React$Component) {
-	  _inherits(LocationResults, _React$Component);
-
-	  function LocationResults(props) {
-	    _classCallCheck(this, LocationResults);
-
-	    var _this = _possibleConstructorReturn(this, (LocationResults.__proto__ || Object.getPrototypeOf(LocationResults)).call(this, props));
-
-	    _this.state = {
-	      hidden: true
-	    };
-	    _this.handleShow = _this.handleShow.bind(_this);
-	    return _this;
-	  }
-
-	  _createClass(LocationResults, [{
-	    key: 'handleShow',
-	    value: function handleShow() {
-	      this.setState({
-	        hidden: !this.state.hidden
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-
-	      var tmp = [];
-	      var hidden = this.state.hidden ? "hidden" : "";
-	      var fa_name = this.state.hidden ? "caret-down" : "times-circle-o";
-	      // Order by room
-	      this.props.locations.map(function (opening) {
-	        tmp.push(_react2.default.createElement(
-	          'div',
-	          { key: opening._id, className: 'RoomResult' },
-	          _react2.default.createElement(
-	            'h4',
-	            null,
-	            opening.room.name
-	          ),
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Free from ',
-	            formatTime(opening.start),
-	            ' to ',
-	            formatTime(opening.end)
-	          )
-	        ));
-	      });
-	      return _react2.default.createElement(
-	        'div',
-	        { key: this.props.locations[0]._id,
-	          className: 'Results',
-	          onClick: function onClick() {
-	            return _this2.handleShow();
-	          }
-	        },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'RoomResult RoomName' },
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            this.props.locations[0].room.name.split(' ')[0]
-	          ),
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            this.props.locations.length,
-	            ' rooms available'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'Center' },
-	            _react2.default.createElement(_reactFontawesome2.default, { name: fa_name })
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: hidden },
-	          tmp
-	        )
-	      );
-	    }
-	  }]);
-
-	  return LocationResults;
-	}(_react2.default.Component);
-
-	exports.default = LocationResults;
-
-
-	function formatTime(time) {
-	  var timeInt = parseInt(time);
-
-	  if (timeInt >= 720) {
-	    timeInt = timeInt - 720;
-
-	    var hours = Math.floor(timeInt / 60);
-	    var minutes = timeInt % 60;
-
-	    hours = hours === 0 ? 12 : hours;
-
-	    hours = formatNumber(hours);
-	    minutes = formatNumber(minutes);
-
-	    return hours + ':' + minutes + ' pm';
-	  } else {
-	    var _hours = Math.floor(timeInt / 60);
-	    var _minutes = timeInt % 60;
-
-	    _hours = _hours === 0 ? 12 : _hours;
-
-	    _hours = formatNumber(_hours);
-	    _minutes = formatNumber(_minutes);
-
-	    return _hours + ':' + _minutes + ' am';
-	  }
-	}
-
-	function formatNumber(number) {
-	  return number > 9 ? "" + number : "0" + number;
-	}
-
-/***/ },
-/* 272 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.srOnlyStyle = undefined;
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(8);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	var srOnlyStyle = exports.srOnlyStyle = {
-	  position: 'absolute',
-	  width: '1px',
-	  height: '1px',
-	  padding: '0px',
-	  margin: '-1px',
-	  overflow: 'hidden',
-	  clip: 'rect(0px, 0px, 0px, 0px)',
-	  border: '0px'
-	};
-
-	/**
-	 * A React component for the font-awesome icon library.
-	 *
-	 *
-	 * @param {String} [ariaLabel] An extra accessibility label to put on the icon
-	 * @param {Boolean} [border=false] Whether or not to show a border radius
-	 * @param {String} [className] An extra set of CSS classes to add to the component
-	 * @param {Object} [cssModule] Option to pass FontAwesome CSS as a module
-	 * @param {Boolean} [fixedWidth=false] Make buttons fixed width
-	 * @param {String} [flip=false] Flip the icon's orientation.
-	 * @param {Boolean} [inverse=false]Inverse the icon's color
-	 * @param {String} name Name of the icon to use
-	 * @param {Boolean} [pulse=false] Rotate icon with 8 steps (rather than smoothly)
-	 * @param {Number} [rotate] The degress to rotate the icon by
-	 * @param {String} [size] The icon scaling size
-	 * @param {Boolean} [spin=false] Spin the icon
-	 * @param {String} [stack] Stack an icon on top of another
-	 * @param {String} [tag=span] The HTML tag to use as a string (eg 'i' or 'em')
-	 * @module FontAwesome
-	 * @type {ReactClass}
-	 */
-	exports.default = _react2.default.createClass({
-
-	  displayName: 'FontAwesome',
-
-	  propTypes: {
-	    ariaLabel: _react2.default.PropTypes.string,
-	    border: _react2.default.PropTypes.bool,
-	    className: _react2.default.PropTypes.string,
-	    cssModule: _react2.default.PropTypes.object,
-	    fixedWidth: _react2.default.PropTypes.bool,
-	    flip: _react2.default.PropTypes.oneOf(['horizontal', 'vertical']),
-	    inverse: _react2.default.PropTypes.bool,
-	    name: _react2.default.PropTypes.string.isRequired,
-	    pulse: _react2.default.PropTypes.bool,
-	    rotate: _react2.default.PropTypes.oneOf([90, 180, 270]),
-	    size: _react2.default.PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x']),
-	    spin: _react2.default.PropTypes.bool,
-	    stack: _react2.default.PropTypes.oneOf(['1x', '2x']),
-	    tag: _react2.default.PropTypes.string
-	  },
-
-	  render: function render() {
-	    var _props = this.props;
-	    var border = _props.border;
-	    var cssModule = _props.cssModule;
-	    var className = _props.className;
-	    var fixedWidth = _props.fixedWidth;
-	    var flip = _props.flip;
-	    var inverse = _props.inverse;
-	    var name = _props.name;
-	    var pulse = _props.pulse;
-	    var rotate = _props.rotate;
-	    var size = _props.size;
-	    var spin = _props.spin;
-	    var stack = _props.stack;
-	    var _props$tag = _props.tag;
-	    var tag = _props$tag === undefined ? 'span' : _props$tag;
-	    var ariaLabel = _props.ariaLabel;
-
-	    var props = _objectWithoutProperties(_props, ['border', 'cssModule', 'className', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack', 'tag', 'ariaLabel']);
-
-	    var classNames = [];
-
-	    if (cssModule) {
-	      classNames.push(cssModule['fa']);
-	      classNames.push(cssModule['fa-' + name]);
-	      size && classNames.push(cssModule['fa-' + size]);
-	      spin && classNames.push(cssModule['fa-spin']);
-	      pulse && classNames.push(cssModule['fa-pulse']);
-	      border && classNames.push(cssModule['fa-border']);
-	      fixedWidth && classNames.push(cssModule['fa-fw']);
-	      inverse && classNames.push(cssModule['fa-inverse']);
-	      flip && classNames.push(cssModule['fa-flip-' + flip]);
-	      rotate && classNames.push(cssModule['fa-rotate-' + rotate]);
-	      stack && classNames.push(cssModule['fa-stack-' + stack]);
-	    } else {
-	      classNames.push('fa');
-	      classNames.push('fa-' + name);
-	      size && classNames.push('fa-' + size);
-	      spin && classNames.push('fa-spin');
-	      pulse && classNames.push('fa-pulse');
-	      border && classNames.push('fa-border');
-	      fixedWidth && classNames.push('fa-fw');
-	      inverse && classNames.push('fa-inverse');
-	      flip && classNames.push('fa-flip-' + flip);
-	      rotate && classNames.push('fa-rotate-' + rotate);
-	      stack && classNames.push('fa-stack-' + stack);
-	    }
-
-	    // Add any custom class names at the end.
-	    className && classNames.push(className);
-	    return _react2.default.createElement(tag, _extends({}, props, { 'aria-hidden': true, className: classNames.join(' ') }), ariaLabel ? _react2.default.createElement('span', { style: srOnlyStyle }, ariaLabel) : null);
-	  }
-	});
 
 /***/ }
 /******/ ]);

@@ -30,11 +30,13 @@ body {
   background-size: cover;
   width: 100vw;
   // min-height: 100vh;
-  padding-top: 12rem;
-  padding-bottom: 12rem;
+  padding-top: 25vh;
+  // min-height: 100vh;
+  padding-bottom: 25vh;
   overflow: auto;
 
-  > h2 {
+  h2,
+  h4 {
     color: #EEE;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
@@ -42,12 +44,21 @@ body {
     text-align: center;
   }
 
-  > h4 {
-    color: #EEE;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+  h4 {
     font-size: 2.0rem;
-    text-align: center;
+  }
+
+  &--content {
+    min-height: 50vh;
+  }
+
+  @media screen and (max-width: 650px) {
+    padding-top: 18vh;
+    padding-bottom: 18vh;
+
+    &--content {
+      min-height: 64vh;
+    }
   }
 }
 
@@ -127,7 +138,7 @@ body {
 
 @media (max-width: 420px) {
   .Home {
-    padding-top: 6.5rem;
+    // padding-top: 6.5rem;
 
     > h2 {
       font-size: 1.5rem;
