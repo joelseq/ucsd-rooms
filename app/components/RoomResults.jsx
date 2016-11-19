@@ -32,6 +32,15 @@ function RoomResults({ openings, loading }) {
 
     let openings_list = Object.keys(openings_map).map(key => openings_map[key]);
 
+    openings_list.forEach(function(opening) {
+      // Sort by number
+      opening.sort(function(a, b) {
+        let x = a.room.name.split(" ")[1];
+        let y = b.room.name.split(" ")[1];
+        return parseInt(x) - parseInt(y);
+      });
+    });
+
     let res = [];
 
     openings_list.map(location_list => {

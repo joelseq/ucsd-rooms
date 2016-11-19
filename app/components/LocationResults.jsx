@@ -36,6 +36,18 @@ export default class LocationResults extends React.Component {
         </div>
       )
     });
+    tmp.push(
+      <div 
+        className="RoomResult RoomResult--end hover-pointer"
+        onClick={() => this.handleShow()}
+      >
+        <div className="Center">
+          <FontAwesome name="times-circle-o" />
+          &nbsp;Close
+        </div>
+      </div>
+    )
+
     return (
       <div key={this.props.locations[0]._id} 
         className="Results"
@@ -47,7 +59,7 @@ export default class LocationResults extends React.Component {
           <h3>{this.props.locations[0].room.name.split(' ')[0]}</h3>
           <p>{this.props.locations.length} rooms available</p>
 
-          <div className="Center">
+          <div className="RoomName--right">
             <FontAwesome name={fa_name} />
           </div>
         </div>
@@ -62,6 +74,7 @@ export default class LocationResults extends React.Component {
             </span>
           </div>
           {tmp}
+
         </div>
       </div>
     )
