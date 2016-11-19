@@ -69,7 +69,7 @@ export default class LocationResults extends React.Component {
             <span className="left">
               Room
             </span>
-            <span className="right">
+            <span className="right hide-small">
               Available
             </span>
           </div>
