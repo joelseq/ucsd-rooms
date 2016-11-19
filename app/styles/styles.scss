@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 
 $card_bg: #FFF;
 
@@ -8,6 +10,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background-color: #F0f0f0
 }
 #app {
@@ -38,7 +41,8 @@ body {
   h2,
   h4 {
     color: #EEE;
-    font-family: 'Open Sans', sans-serif;
+    // font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     font-size: 2.5rem;
     text-align: center;
@@ -102,21 +106,6 @@ body {
   color: #EEE;
 }
 
-.RoomResult {
-  // background: $card_bg;
-  color: #111;
-  // box-shadow: 0 4px 8px #ddd;
-  // margin-top: 10px;
-  // border-radius: 4px;
-  // padding: 15px;
-  font-family: 'Roboto', sans-serif;
-
-  h3,
-  h4 {
-    font-family: 'Open Sans', sans-serif;
-  }
-}
-
 .ResultsWrapper {
   position: relative;
   top: -6rem;
@@ -166,10 +155,66 @@ body {
 .Center {
   text-align: center;
   font-size: 20px;
+  position: absolute;
+  right: 15px;
+  top: 40%;
 }
 
 .RoomResult {
   margin-top: 0;
   padding: 15px;
-  border-bottom: 2px solid #666;
+  border-bottom: 2px solid #eee;
+  color: #444;
+  font-family: 'Montserrat', sans-serif;
+
+  &.RoomName {
+    position: relative;
+    border-bottom: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  p {
+    margin: 0;
+  }
+  h3,
+  h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+  }
+  &--individual {
+    height: 64px;
+    position: relative;
+  }
+  &--title {
+    position: absolute;
+    left: 15px;
+    top: 0;
+
+    h4 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 64px;
+      font-weight: initial;
+      font-family: 'Montserrat', sans-serif;
+    }
+  }
+  &--time {
+    position: absolute;
+    right: 15px;
+    top: 0;
+
+    p {
+      font-size: 16px;
+      line-height: 64px;
+      font-family: 'Montserrat';
+    }
+  }
+}
+.emphasis {
+  font-weight: bold;
+}
+.right {
+  float: right;
 }
