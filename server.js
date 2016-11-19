@@ -6,6 +6,7 @@ var helmet = require('helmet');
 var cors = require('cors');
 var path = require('path');
 var RateLimit = require('express-rate-limit');
+var compression = require('compression');
 
 var app = express();
 
@@ -26,6 +27,7 @@ var limiter = new RateLimit({
 app.use(helmet());
 app.use(cors());
 app.use(logger('dev'));
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
