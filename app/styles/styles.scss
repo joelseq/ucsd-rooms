@@ -5,6 +5,12 @@
 
 $card_bg: #FFF;
 
+// Denotes when card text will collapse into 2 rows
+$mobile_breakpoint: 580px;
+$card_collapse_breakpoint: $mobile_breakpoint; // Was 650px
+
+$card_padding: 15px;
+
 html,
 body {
   width: 100%;
@@ -46,11 +52,12 @@ body {
     font-weight: 300;
     font-size: 2.5rem;
     text-align: center;
+    padding: 10px;
   }
-
   h4 {
     font-size: 2.0rem;
   }
+
 
   &--content {
     min-height: 50vh;
@@ -79,7 +86,18 @@ body {
   }
 }
 
-.RoomForm {
+.Home--content {
+  h2 {
+    @media screen and (max-width: $mobile_breakpoint) {
+      font-size: 2rem;
+    }
+  }
+
+  h4 {
+    @media screen and (max-width: $mobile_breakpoint) {
+      font-size: 1.6rem;
+    }
+  }
 }
 
 .RoomForm__form {
@@ -156,7 +174,7 @@ body {
   text-align: center;
   font-size: 20px;
   position: absolute;
-  right: 15px;
+  right: $card_padding;
   top: 38%;
 }
 
@@ -170,7 +188,7 @@ body {
 
 .RoomResult {
   margin-top: 0;
-  padding: 15px;
+  padding: $card_padding;
   border-bottom: 2px solid #eee;
   color: #444;
   font-family: 'Montserrat', sans-serif;
@@ -194,10 +212,14 @@ body {
   &--individual {
     height: 64px;
     position: relative;
+
+    @media screen and (max-width: $card_collapse_breakpoint) {
+      height: 92px;
+    }
   }
   &--title {
     position: absolute;
-    left: 15px;
+    left: $card_padding;
     top: 0;
 
     h4 {
@@ -210,8 +232,13 @@ body {
   }
   &--time {
     position: absolute;
-    right: 15px;
-    top: 0;
+    right: $card_padding;
+    bottom: 0;
+
+    @media screen and (max-width: $card_collapse_breakpoint) {
+      left: $card_padding;
+      bottom: -5px;
+    }
 
     p {
       font-size: 16px;
@@ -220,11 +247,17 @@ body {
     }
   }
 }
+
 .emphasis {
   font-weight: bold;
 }
 .right {
   float: right;
+}
+@media screen and (max-width: $mobile_breakpoint) {
+  .hide-small {
+    display: none;
+  }
 }
 .hover-pointer:hover {
   cursor: pointer;
