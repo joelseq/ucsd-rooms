@@ -40,13 +40,14 @@ export default class Home extends Component {
           <div className="Home--content">
             <h2>Find empty classrooms at UCSD!</h2>
             <h4>Pick a Day and Time</h4>
+            <p className="Home__disclaimer">*Rooms are not guaranteed to be empty.</p>
             <div className="row">
               <div className="large-8 medium-10 small-10 columns medium-offset-1 large-offset-2 small-offset-1">
                 <RoomForm handleFormSubmit={this.handleFormSubmit} />
               </div>
             </div>
           </div>
-          
+
         </div>
         <div className="row">
             <div className="large-8 medium-10 small-12 columns medium-offset-1 large-offset-2">
