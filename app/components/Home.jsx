@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RoomForm from './RoomForm.jsx';
 import RoomResults from './RoomResults.jsx';
+import EndOfQuarter from './EndOfQuarter.jsx';
 import API from '../api';
 
 export default class Home extends Component {
@@ -34,6 +35,13 @@ export default class Home extends Component {
   }
 
   render() {
+    // Put this to true if it's the end of the quarter
+    const eoq = true;
+
+    if (eoq) {
+      return <EndOfQuarter />;
+    }
+
     return (
       <div className="Wrapper">
         <div className="Home">
