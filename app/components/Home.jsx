@@ -47,13 +47,13 @@ export default class Home extends Component {
               </div>
             </div>
           </div>
-
         </div>
+
         <div className="row">
-            <div className="large-8 medium-10 small-12 columns medium-offset-1 large-offset-2">
-              <RoomResults loading={this.state.loading} openings={this.state.openings} />
-            </div>
+          <div className="large-8 medium-10 small-12 columns medium-offset-1 large-offset-2">
+            <RoomResults loading={this.state.loading} openings={this.state.openings} />
           </div>
+        </div>
       </div>
     );
   }
