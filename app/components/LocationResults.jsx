@@ -10,13 +10,27 @@ export default class LocationResults extends React.Component {
       hidden: true
     };
     this.handleShow = this.handleShow.bind(this);
+    this.reportProblem = this.reportProblem.bind(this);
   }
-  handleShow () {
+
+  handleShow() {
     this.setState({
       hidden: !this.state.hidden
     })
   }
-  render () {
+
+  reportProblem(roomName, start, end) {
+    let confirmation = confirm(`You are about to report this room as not being empty.`);
+
+    if (confirmation) {
+      let reportString = `${roomName}: ${start}-${end}`;
+      ga('send', 'event', 'Result', 'report', reportString);
+
+      alert('Your report has been sent. Sorry for the inconvenience!');
+    }
+  }
+
+  render() {
     let tmp = [];
     let hidden = (this.state.hidden) ? "hidden" : "";
     let fa_name = (this.state.hidden) ? "caret-down": "times-circle-o";
@@ -26,6 +40,13 @@ export default class LocationResults extends React.Component {
         <div key={opening._id} className="RoomResult RoomResult--individual">
           <div className="RoomResult--title">
             <h4>{opening.room.name}</h4>
+          </div>
+          <div className="RoomResult--report">
+            <button
+              onClick={() => this.reportProblem(opening.room.name, opening.start, opening.end)}
+            >
+              <FontAwesome name="flag" /> Report
+            </button>
           </div>
           <div className="RoomResult--time">
             <p><span className="emphasis">{formatTime(opening.start)} </span>
@@ -68,9 +89,6 @@ export default class LocationResults extends React.Component {
           <div className="RoomResult RoomResult--header">
             <span className="left">
               Room
-            </span>
-            <span className="right hide-small">
-              Available
             </span>
           </div>
           {tmp}
