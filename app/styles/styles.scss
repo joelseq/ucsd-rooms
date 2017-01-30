@@ -38,14 +38,13 @@ body {
   -o-background-size: cover;
   background-size: cover;
   width: 100vw;
-  // min-height: 100vh;
-  padding-top: 25vh;
-  // min-height: 100vh;
-  padding-bottom: 25vh;
+  padding-top: 15vh;
+  padding-bottom: 34vh;
   overflow: auto;
 
   h2,
   h4,
+  h5,
   p {
     color: #EEE;
     // font-family: 'Open Sans', sans-serif;
@@ -58,21 +57,25 @@ body {
   h4 {
     font-size: 2.0rem;
   }
+  h5 {
+    font-size: 1.5rem;
+    color: #AAA;
+  }
   p {
     font-size: 1.5rem;
   }
 
 
   &--content {
-    min-height: 50vh;
+    height: 49vh;
   }
 
   @media screen and (max-width: 650px) {
-    padding-top: 18vh;
-    padding-bottom: 18vh;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
 
     &--content {
-      min-height: 64vh;
+      min-height: 79vh;
     }
   }
 }
@@ -100,6 +103,12 @@ body {
   h4 {
     @media screen and (max-width: $mobile_breakpoint) {
       font-size: 1.6rem;
+    }
+  }
+
+  h5 {
+    @media screen and (max-width: $mobile_breakpoint) {
+      font-size: 1.4rem;
     }
   }
 
@@ -224,7 +233,7 @@ body {
     font-weight: bold;
   }
   &--individual {
-    height: 64px;
+    height: 80px;
     position: relative;
 
     @media screen and (max-width: $card_collapse_breakpoint) {
@@ -245,19 +254,33 @@ body {
     }
   }
   &--time {
-    position: absolute;
-    right: $card_padding;
-    bottom: 0;
+    position: relative;
+    margin-top: 5px;
 
-    @media screen and (max-width: $card_collapse_breakpoint) {
-      left: $card_padding;
-      bottom: -5px;
-    }
+    // @media screen and (max-width: $card_collapse_breakpoint) {
+    //   left: $card_padding;
+    //   bottom: -5px;
+    // }
 
     p {
       font-size: 16px;
       line-height: 64px;
       font-family: 'Montserrat';
+      z-index: -999;
+    }
+  }
+  &--report {
+    position: absolute;
+    right: $card_padding;
+    margin-top: 5px;
+    color: #c55;
+    z-index: 1;
+    cursor: pointer;
+    &:focus {
+      cursor: pointer;
+    }
+    &:hover {
+      cursor: pointer;
     }
   }
 }
@@ -280,6 +303,13 @@ body {
 .Home__disclaimer {
   color: #c55;
   text-align: center;
+}
+
+.footer {
+  text-align: center;
+  background: rgba(0,0,0,0);
+  color: #888;
+  display: block;
 }
 
 // .Wrapper {
