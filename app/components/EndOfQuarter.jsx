@@ -7,7 +7,7 @@ export default function EndOfQuarter(props) {
       <div className="Home--content">
         <div className="Wrapper">
           <h2>Find empty classrooms at UCSD!</h2>
-          <p>It's the end of the quarter! UCSD Room Finder will return with the updated classrooms next quarter. Thank you for using UCSD Room Finder!</p>
+          <p>It's the end of the quarter! UCSD Rooms will return with the updated classrooms next quarter. Thank you for using UCSD Rooms!</p>
         </div>
       </div>
     </div>
