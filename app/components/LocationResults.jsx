@@ -69,6 +69,8 @@ export default class LocationResults extends React.Component {
       </div>
     )
 
+    console.log(this.props.locations[0]);
+
     return (
       <div key={this.props.locations[0]._id} 
         className="Results"
@@ -77,7 +79,11 @@ export default class LocationResults extends React.Component {
           className="RoomResult RoomName"
           onClick={() => this.handleShow()}
         >
-          <h3>{this.props.locations[0].room.name.split(' ')[0]}</h3>
+          <h3>{
+            this.props.locations[0].room.building ?
+            this.props.locations[0].room.building.name :
+            this.props.locations[0].room.name.split(' ')[0]
+          }</h3>
           <p>{this.props.locations.length} rooms available</p>
 
           <div className="RoomName--right">
