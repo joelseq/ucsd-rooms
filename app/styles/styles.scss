@@ -312,11 +312,11 @@ body {
   display: block;
 }
 
-// .Wrapper {
-//   width: 50%;
-//   margin: 0 auto;
-//
-//   @media screen and (max-width: $mobile_breakpoint) {
-//     width: 80%;
-//   }
-// }
+.Wrapper {
+  width: 50%;
+  margin: 0 auto;
+
+  @media screen and (max-width: $mobile_breakpoint) {
+    width: 80%;
+  }
+}
