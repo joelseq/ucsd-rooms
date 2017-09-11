@@ -42,7 +42,7 @@ export default class Home extends Component {
 
   render() {
     // Put this to true if it's the end of the quarter
-    const eoq = true;
+    const eoq = false;
 
     if (eoq) {
       return <EndOfQuarter />;
