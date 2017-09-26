@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RoomForm from './RoomForm.jsx';
 import RoomResults from './RoomResults.jsx';
 import EndOfQuarter from './EndOfQuarter.jsx';
+import GithubRibbon from './GithubRibbon.jsx';
 import API from '../api';
 
 export default class Home extends Component {
@@ -52,6 +53,7 @@ export default class Home extends Component {
       <div className="Wrapper">
         <div className="Home">
           <div className="Home--content">
+            <GithubRibbon />
             <h2>Find empty classrooms at UCSD!</h2>
             <h4>Pick a Day and Time</h4>
             <h5>Currently Serving: Spring 2017</h5>
