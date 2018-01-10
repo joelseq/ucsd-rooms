@@ -43,7 +43,7 @@ export default class Home extends Component {
 
   render() {
     // Put this to true if it's the end of the quarter
-    const eoq = true;
+    const eoq = false;
 
     if (eoq) {
       return <EndOfQuarter />;
@@ -56,7 +56,7 @@ export default class Home extends Component {
             <GithubRibbon />
             <h2>Find empty classrooms at UCSD!</h2>
             <h4>Pick a Day and Time</h4>
-            <h5>Currently Serving: Fall 2017</h5>
+            <h5>Currently Serving: Winter 2018</h5>
             <p className="Home__disclaimer">*Rooms are not guaranteed to be empty.</p>
             <div className="row">
               <div className="large-8 medium-10 small-10 columns medium-offset-1 large-offset-2 small-offset-1">
