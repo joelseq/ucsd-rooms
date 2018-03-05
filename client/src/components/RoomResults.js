@@ -5,8 +5,8 @@ import LocationResults from './LocationResults';
 const RoomResults = ({ openings, loading }) => {
   if (loading) {
     return (
-      <div>
-        <h3>
+      <div className="ResultsWrapper">
+        <h3 className="loading-text">
           <img src={loadingImage} width="50" height="50" alt="Loading"/>
         </h3>
       </div>
@@ -22,7 +22,7 @@ const RoomResults = ({ openings, loading }) => {
       if (roomName in openingsMap) {
         openingsMap[roomName].push(opening);
       } else {
-        openingsMap[roomname] = [opening];
+        openingsMap[roomName] = [opening];
       }
     });
 
@@ -33,12 +33,12 @@ const RoomResults = ({ openings, loading }) => {
       opening.sort((a, b) => {
         const x = a.room.name.split(' ')[1];
         const y = b.room.name.split(' ')[1];
-        return parseInt(x) - parseInt(y);
+        return parseInt(x, 10) - parseInt(y, 10);
       });
     });
 
     return (
-      <div>
+      <div className="ResultsWrapper">
         {openingsList.map(locationList => <LocationResults locations={locationList} />)}
       </div>
     );
