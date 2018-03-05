@@ -1,40 +1,8 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
+import RoomResult from './RoomResult';
 
 class LocationResults extends Component {
-  static formatTime = (time) => {
-    let timeInt = parseInt(time);
-  
-    if (timeInt >= 720) {
-      timeInt = timeInt - 720;
-  
-      let hours = Math.floor(timeInt / 60);
-      let minutes = timeInt % 60;
-  
-      hours = hours === 0 ? 12 : hours;
-  
-      hours = formatNumber(hours);
-      minutes = formatNumber(minutes);
-  
-      return `${hours}:${minutes} pm`;
-    }
-    else {
-      let hours = Math.floor(timeInt / 60);
-      let minutes = timeInt % 60;
-  
-      hours = hours === 0 ? 12 : hours;
-  
-      hours = formatNumber(hours);
-      minutes = formatNumber(minutes);
-  
-      return `${hours}:${minutes} am`;
-    }
-  };
-  
-  static formatNumber = (number) => {
-    return number > 9 ? "" + number: "0" + number;
-  };
-
   state = {
     hidden: true,
   };
@@ -46,59 +14,23 @@ class LocationResults extends Component {
   }
 
   reportProblem = (roomName, start, end) => {
-    const confirmation = confirm('You are about to report this room as not being empty.');
+    const confirmation = confirm('You are about to report this room as not being empty.'); // eslint-disable-line
 
     if (confirmation) {
       const reportString = `${roomName}: ${start}-${end}`;
-      ga('send', 'event', 'Result', 'report', reportString);
+      ga('send', 'event', 'Result', 'report', reportString); // eslint-disable-line
 
       alert('Your report has been sent. Sorry for the inconvenience!');
     }
   }
 
   render() {
-    const tmp = [];
     const hidden = (this.state.hidden) ? "hidden" : "";
     const fa_name = (this.state.hidden) ? "caret-down": "times-circle-o";
-    // Order by room
-    this.props.locations.map(opening => {
-      tmp.push(
-        <div key={opening._id} className="RoomResult RoomResult--individual">
-          <div className="RoomResult--title">
-            <h4>{opening.room.name}</h4>
-          </div>
-          <div className="RoomResult--report">
-            <button
-              onClick={() => this.reportProblem(opening.room.name, opening.start, opening.end)}
-            >
-              <FontAwesome name="flag" /> Report
-            </button>
-          </div>
-          <div className="RoomResult--time">
-            <p><span className="emphasis">{formatTime(opening.start)} </span>
-              to 
-              <span className="emphasis"> {formatTime(opening.end)}</span>
-            </p>
-          </div>
-        </div>
-      )
-    });
-    tmp.push(
-      <div 
-        className="RoomResult RoomResult--end hover-pointer"
-        onClick={() => this.handleShow()}
-      >
-        <div className="Center">
-          <FontAwesome name="times-circle-o" />
-          &nbsp;Close
-        </div>
-      </div>
-    )
-
-    console.log(this.props.locations[0]);
+    const { locations } = this.props;
 
     return (
-      <div key={this.props.locations[0]._id} 
+      <div key={locations[0]._id} 
         className="Results"
       >
         <div 
@@ -106,28 +38,41 @@ class LocationResults extends Component {
           onClick={() => this.handleShow()}
         >
           <h3>{
-            this.props.locations[0].room.building ?
-            this.props.locations[0].room.building.name :
-            this.props.locations[0].room.name.split(' ')[0]
+            locations[0].room.building ?
+            locations[0].room.building.name :
+            locations[0].room.name.split(' ')[0]
           }</h3>
-          <p>{this.props.locations.length} rooms available</p>
+          <p>{locations.length} {locations.length === 1 ? 'room' : 'rooms'} available</p>
 
           <div className="RoomName--right">
             <FontAwesome name={fa_name} />
           </div>
         </div>
-
         <div className={hidden}>
           <div className="RoomResult RoomResult--header">
             <span className="left">
               Room
             </span>
           </div>
-          {tmp}
-
+          {locations.map(opening => (
+            <RoomResult
+              key={opening._id}
+              opening={opening}
+              onReportButton={this.reportProblem}
+            />
+          ))}
+          <div 
+            className="RoomResult RoomResult--end hover-pointer"
+            onClick={() => this.handleShow()}
+          >
+            <div className="Center">
+              <FontAwesome name="times-circle-o" />
+              &nbsp;Close
+            </div>
+          </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
