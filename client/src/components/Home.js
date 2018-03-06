@@ -15,7 +15,7 @@ class Home extends Component {
     $(".Home").animate({ // eslint-disable-line
       "padding-top": "4vh",
       "padding-bottom": "4vh",
-      "height": "75vh",
+      "height": "75%",
     }, "slow");
     this.setState({
       loading: true,
@@ -49,7 +49,7 @@ class Home extends Component {
 
     return (
       <div className="Wrapper">
-        <div className="Home">
+        <div className="Home container-fluid">
           <div className="Home--content">
             <GithubRibbon />
             <h2>Find empty classrooms at UCSD!</h2>
