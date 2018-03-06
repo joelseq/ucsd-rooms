@@ -20,14 +20,23 @@ module.exports.getRooms = (event, context, callback) => {
       }).populate('room').exec((err, rooms) => {
         if (err) {
           callback(null, {
-            statusCode: err.statusCode || 500,
-            headers: { 'Content-Type': 'text/plain' },
+            statusCode: 500,
+            headers: {
+              "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
+              "Access-Control-Allow-Credentials" : true, // Required for cookies, authorization headers with HTTPS
+              'Content-Type': 'text/plain',
+            },
             body: 'Could not fetch rooms.',
           });
         }
 
         callback(null, {
           statusCode: 200,
+          headers: {
+            "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
+            "Access-Control-Allow-Credentials" : true, // Required for cookies, authorization headers with HTTPS
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify(rooms),
         });
       });
