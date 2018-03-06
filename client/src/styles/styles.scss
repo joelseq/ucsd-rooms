@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+$card_bg: #FFF;
+
+// Denotes when card text will collapse into 2 rows
+$mobile_breakpoint: 580px;
+$card_collapse_breakpoint: $mobile_breakpoint; // Was 650px
+
+$card_padding: 15px;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #F0f0f0;
+  font-size: 14px;
+}
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.App {
+  width: 100%;
+  height: 100%;
+}
+
+.Home {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/img/lecture.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 15vh;
+  padding-bottom: 50px;
+  overflow: auto;
+
+  h2,
+  h4,
+  h5,
+  p {
+    color: #EEE;
+    // font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 10px;
+  }
+  h4 {
+    font-size: 2.0rem;
+  }
+  h5 {
+    font-size: 1.5rem;
+    color: #AAA;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+
+
+  &--content {
+    height: 49vh;
+  }
+
+  @media screen and (max-width: 650px) {
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+
+    &--content {
+      min-height: 79vh;
+    }
+  }
+}
+
+.spinner-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > i {
+    margin-top: 1.5rem;
+    color: white;
+  }
+}
+
+.Home--content {
+  h2 {
+    @media screen and (max-width: $mobile_breakpoint) {
+      font-size: 2rem;
+    }
+  }
+
+  h4 {
+    @media screen and (max-width: $mobile_breakpoint) {
+      font-size: 1.6rem;
+    }
+  }
+
+  h5 {
+    @media screen and (max-width: $mobile_breakpoint) {
+      font-size: 1.4rem;
+    }
+  }
+
+  p {
+    @media screen and (max-width: $mobile_breakpoint) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.RoomForm__form {
+  width: 100%;
+
+  label {
+    color: #B2B2B2;
+  }
+
+  select {
+    width: 100%;
+    background-color: rgba(255,255,255,0.2);
+    border: none;
+    color: #FCFCFC;
+    border-radius: 4px;
+
+    > option {
+      color: #111;
+    }
+  }
+
+  &-elem {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+.RoomForm__form-button {
+  width: 100%;
+  background: none;
+  border-radius: 4px;
+  border: 1px solid #EEE;
+  height: 50px;
+  color: #EEE;
+}
+
+.ResultsWrapper {
+  position: relative;
+  top: -6rem;
+
+  .Results {
+    margin-top: 10px;
+    background: $card_bg;
+    color: #111;
+    box-shadow: 0 4px 8px #ddd;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+
+    &:first-of-type {
+      margin-top: 7rem;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .Home {
+    // padding-top: 6.5rem;
+
+    > h2 {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.loading-text {
+  color: #EEE;
+  text-align: center;
+  margin-top: 1.5rem;
+  position: absolute;
+  left: 50%;
+  top: 0;
+
+  img {
+    transform: translateX(-50%);
+  }
+}
+
+.RoomName--right {
+  text-align: center;
+  font-size: 20px;
+  position: absolute;
+  right: $card_padding;
+  top: 38%;
+}
+
+.Center {
+  text-align: center;
+}
+
+.RoomResult:hover {
+  background-color: #f7f7f7;
+}
+
+.RoomResult {
+  margin-top: 0;
+  padding: $card_padding;
+  border-bottom: 2px solid #eee;
+  color: #444;
+  font-family: 'Montserrat', sans-serif;
+
+  &.RoomName {
+    position: relative;
+    border-bottom: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  p {
+    margin: 0;
+  }
+  h3,
+  h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+  }
+  &--individual {
+    height: 80px;
+    position: relative;
+
+    @media screen and (max-width: $card_collapse_breakpoint) {
+      height: 92px;
+    }
+  }
+  &--title {
+    position: absolute;
+    left: $card_padding;
+    top: 0;
+
+    h4 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 64px;
+      font-weight: initial;
+      font-family: 'Montserrat', sans-serif;
+    }
+  }
+  &--time {
+    position: relative;
+    margin-top: 5px;
+
+    // @media screen and (max-width: $card_collapse_breakpoint) {
+    //   left: $card_padding;
+    //   bottom: -5px;
+    // }
+
+    p {
+      font-size: 16px;
+      line-height: 64px;
+      font-family: 'Montserrat';
+      z-index: -999;
+    }
+  }
+  &--report {
+    position: absolute;
+    right: $card_padding;
+    margin-top: 5px;
+    color: #c55;
+    z-index: 1;
+    cursor: pointer;
+    &:focus {
+      cursor: pointer;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    
+    button {
+      border: none;
+      background: none;
+    }
+  }
+}
+
+.emphasis {
+  font-weight: bold;
+}
+.right {
+  float: right;
+}
+@media screen and (max-width: $mobile_breakpoint) {
+  .hide-small {
+    display: none;
+  }
+}
+.hover-pointer:hover {
+  cursor: pointer;
+}
+
+.Home__disclaimer {
+  color: #c55;
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  background: rgba(0,0,0,0);
+  color: #888;
+  display: block;
+}
+
+// .Wrapper {
+//   width: 50%;
+//   margin: 0 auto;
+
+//   @media screen and (max-width: $mobile_breakpoint) {
+//     width: 80%;
+//   }
+// }
+
+// GitHub Corner CSS
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+  0%,100% {
+    transform: rotate(0);
+  }
+  
+  20%,60% {
+    transform: rotate(-25deg);
+  }
+  
+  40%,80% {
+    transform: rotate(10deg);
+  }
+}
+
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
