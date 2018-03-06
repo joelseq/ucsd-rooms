@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Home from './Home';
 
 const App = () => (
-  <div>
-    {this.props.children}
+  <div className="App">
+    <Home />
   </div>
 );
 

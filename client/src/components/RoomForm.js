@@ -37,21 +37,23 @@ class RoomForm extends Component {
         <form onSubmit={this.onFormSubmit} className="RoomForm__form">
           <div className="row">
             <div className="col-xs-12">
-              <label>
-                Day
-                <select ref={(input) => { this.day = input; }}>
+              <div className="input-group RoomForm__form-elem">
+                <label>Day</label>
+                <select className="form-control" ref={(input) => { this.day = input; }}>
                   <option value="M">Monday</option>
                   <option value="Tu">Tuesday</option>
                   <option value="W">Wednesday</option>
                   <option value="Th">Thursday</option>
                   <option value="F">Friday</option>
                 </select>
-              </label>
+              </div>
             </div>
             <div className="col-xs-4">
-              <label>
-                Hour
-                <select ref={(input) => { this.hour = input; }}>
+              <div className="input-group RoomForm__form-elem">
+                <label>
+                  Hour
+                </label>
+                <select className="form-control" ref={(input) => { this.hour = input; }}>
                   <option value="1">01</option>
                   <option value="2">02</option>
                   <option value="3">03</option>
@@ -65,27 +67,31 @@ class RoomForm extends Component {
                   <option value="11">11</option>
                   <option value="12">12</option>
                 </select>
-              </label>
+              </div>
             </div>
             <div className="col-xs-4">
-              <label>
-                Minutes
-                <select ref={(input) => { this.mins = input; }}>
+              <div className="input-group RoomForm__form-elem">
+                <label>
+                  Minutes
+                </label>
+                <select className="form-control" ref={(input) => { this.mins = input; }}>
                   <option value="0">00</option>
                   <option value="15">15</option>
                   <option value="30">30</option>
                   <option value="45">45</option>
                 </select>
-              </label>
+              </div>
             </div>
             <div className="col-xs-4">
-              <label>
-                AM / PM
-                <select ref={(input) => { this.period = input;}}>
+              <div className="input-group RoomForm__form-elem">
+                <label>
+                  AM / PM
+                </label>
+                <select className="form-control" ref={(input) => { this.period = input;}}>
                   <option value="am">AM</option>
                   <option value="pm">PM</option>
                 </select>
-              </label>
+              </div>
             </div>
             <div className="col-xs-12">
               <button type="submit" className="RoomForm__form-button">Find Rooms!</button>
