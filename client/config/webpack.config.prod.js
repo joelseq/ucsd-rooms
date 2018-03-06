@@ -215,7 +215,7 @@ module.exports = {
           {
             test: /\.scss$/,
             include: paths.appSrc,
-            loaders: ["style", "css", "sass"],
+            loader: 'style-loader!css-loader!sass-loader',
           },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
