@@ -42,7 +42,11 @@ const RoomResults = ({ openings, loading }) => {
 
   return (
     <div className="ResultsWrapper">
-      {openingsList.map(locationList => <LocationResults locations={locationList} />)}
+      {openingsList.map(locationList => 
+        <LocationResults
+          key={locationList[0].room.name.split(' ')[0]}
+          locations={locationList}
+        />)}
     </div>
   );
 };

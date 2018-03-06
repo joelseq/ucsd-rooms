@@ -8,8 +8,8 @@ class RoomResult extends Component {
       room: PropTypes.shape({
         name: PropTypes.string,
       }),
-      start: PropTypes.string,
-      end: PropTypes.string,
+      start: PropTypes.number,
+      end: PropTypes.number,
     }),
     onReportButton: PropTypes.func,
   };
@@ -19,8 +19,8 @@ class RoomResult extends Component {
       room: {
         name: 'Default',
       },
-      start: '0',
-      end: '0',
+      start: 0,
+      end: 0,
     },
     onReportButton() {},
   };
@@ -77,7 +77,7 @@ class RoomResult extends Component {
         <div className="RoomResult--time">
           <p>
             <span className="emphasis">{RoomResult.formatTime(opening.start)}</span>
-            to
+            {' to '}
             <span className="emphasis">{RoomResult.formatTime(opening.end)}</span>
           </p>
         </div>

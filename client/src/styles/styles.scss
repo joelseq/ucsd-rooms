@@ -38,7 +38,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   padding-top: 15vh;
   padding-bottom: 50px;
   overflow: auto;
@@ -288,6 +288,11 @@ body {
     }
     &:hover {
       cursor: pointer;
+    }
+    
+    button {
+      border: none;
+      background: none;
     }
   }
 }

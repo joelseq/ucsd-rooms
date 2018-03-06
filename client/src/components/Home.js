@@ -13,17 +13,18 @@ class Home extends Component {
 
   handleFormSubmit = (day, time) => {
     $(".Home").animate({ // eslint-disable-line
-      "padding-top": "6vh",
-      "padding-bottom": "6vh"
+      "padding-top": "4vh",
+      "padding-bottom": "4vh",
+      "height": "75vh",
     }, "slow");
     this.setState({
       loading: true,
     });
 
     API.getRooms(day, time)
-      .then(openings => {
+      .then(res => {
         this.setState({
-          openings,
+          openings: res.data,
           loading: false,
         });
       })
