@@ -9,18 +9,10 @@ If you would like to request a feature or report a bug please [create a new Issu
 
 ## Install and run locally
 
-To install and run this on your local machine you need [MongoDB](https://www.mongodb.com/)
+The project has been split up into individual parts. Refer to the README of each part to learn how to install and run it:
 
-1. Clone this repository
-2. Run `npm install`
-3. Start MongoDB
-4. Create a `.env` file in the main directory, providing the environment variable `DB_URI` (url to your MongoDB instance). Example:
-
-```
-DB_URI=mongodb://localhost:27017/ucsdrooms
-```
-
-5. Run the server `node server.js`
+1. [Client](https://github.com/joelseq/ucsd-rooms/blob/master/client/README.md)
+2. [Server](https://github.com/joelseq/ucsd-rooms/blob/master/server/README.md)
 
 ## Development
 
